@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <meta name="description" content="Tạo QR đăng nhập máy lẻ Worldfone cho SC Softphone. Dữ liệu được xử lý trong trình duyệt." />
+  <title>SC Softphone · Cấp QR máy lẻ</title>
+  <script type="module" crossorigin src="/sc-softphone-qr/assets/index-CFSPLg7S.js"></script>
+  <link rel="stylesheet" crossorigin href="/sc-softphone-qr/assets/index-B9Vm9Mlb.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./"><span class="brand-icon">SC</span><span>SC Softphone <small>WORLD FONE · PILOT</small></span></a><span class="session-badge"><i></i> Phiên cục bộ</span></header>
+  <main>
+    <section class="intro"><p class="eyebrow">CÔNG CỤ CẤP MÁY LẺ</p><h1>Đăng nhập bằng một lần quét.</h1><p>Thêm máy lẻ, tạo QR và cấp mã cho người dùng SC Softphone.</p></section>
+    <div class="workspace">
+      <section class="panel editor" aria-labelledby="setup-title">
+        <div class="panel-heading"><span class="step">01</span><div><h2 id="setup-title">Chuẩn bị thông tin</h2><p>Một secret cho danh sách máy lẻ trong phiên này.</p></div></div>
+        <form id="qr-form" novalidate>
+          <label for="secret">Secret API Worldfone</label>
+          <div class="secret-field"><input id="secret" type="password" autocomplete="off" maxlength="256" placeholder="Nhập secret được cấp" required /><button id="reveal" type="button" aria-label="Hiện secret" aria-pressed="false">Hiện</button></div>
+          <div class="list-heading"><h3>Danh sách máy lẻ</h3><span id="count">1 máy lẻ</span></div>
+          <div class="column-labels"><span>Máy lẻ</span><span>Tên người dùng (tùy chọn)</span></div>
+          <div id="rows"></div>
+          <button id="add-row" class="add-button" type="button">＋ Thêm máy lẻ</button>
+          <details><summary>Nhập nhiều máy lẻ cùng lúc</summary><label for="bulk">Mỗi dòng: máy lẻ hoặc máy lẻ,tên người dùng</label><textarea id="bulk" rows="4" placeholder="8150,Người dùng A&#10;8151,Người dùng B" spellcheck="false"></textarea><button id="import" class="secondary" type="button">Dùng danh sách này</button></details>
+          <p class="notice">QR chứa secret và có thể được dùng lại. Chỉ gửi mã cho đúng người được cấp máy lẻ.</p>
+          <p id="error" class="error" role="alert" hidden></p>
+          <button class="primary" id="generate" type="submit">Tạo QR cho danh sách</button>
+          <button class="clear-button" id="clear" type="button">Xóa thông tin phiên</button>
+        </form>
+      </section>
+      <section class="panel results" aria-labelledby="results-title">
+        <div class="panel-heading"><span class="step">02</span><div><h2 id="results-title">Cấp mã đăng nhập</h2><p>Trong app, chọn “Quét QR để đăng nhập”.</p></div><button id="print" class="secondary print-button" disabled>In mã</button></div>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+        <div id="empty" class="empty"><div class="qr-symbol" aria-hidden="true">▦</div><h3>Mã QR sẽ xuất hiện tại đây</h3><p>Nhập secret và ít nhất một máy lẻ để bắt đầu.<br />Anh có thể tải PNG riêng hoặc in toàn bộ mã.</p></div>
+        <div id="cards" class="cards"></div>
+      </section>
+    </div>
+    <footer>Secret và danh sách chỉ được giữ trong bộ nhớ của trang; tải lại trang sẽ xóa phiên. Công cụ không gửi dữ liệu đăng nhập tới server.</footer>
+  </main>
+</body>
+</html>
